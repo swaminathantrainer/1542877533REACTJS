@@ -13,6 +13,10 @@ const LoginPage = () => {
 
 const styles = {
     root: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%'
     }
 }
 

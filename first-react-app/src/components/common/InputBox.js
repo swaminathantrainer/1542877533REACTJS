@@ -1,22 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const InputBox = ({ placeholder, onChangeEventHandler, style = {} }) => {
-    const { input, formStyle } = styles;
+class InputBox extends Component {
+    constructor(props) {
+        super(props);
 
-    console.log(style);
+        this.state = {
+            value: ''
+        }
+    }
 
-    return (
-        <form style={formStyle}>
-            <input
-                style={{ ...input, ...style }}
-                type='text'
-                placeholder={placeholder}
-                value=''
-                onChange={(onChangeEventHandler)}
-            />
-        </form>
-    )
-};
+    render() {
+        const { placeholder, onChangeEventHandler, style } = this.props;
+        const { input, formStyle } = styles;
+        const { value } = this.state;
+
+        return (
+            <form style={formStyle}>
+                <input
+                    style={{ ...input, ...style }}
+                    type='text'
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={(event) => {
+                        const val = event.target.value;
+                        this.setState({
+                            value: val
+                        });
+                        onChangeEventHandler(event);
+                    }}
+                />
+            </form>
+        );
+    }
+}
+
+// const InputBox = ({ placeholder, onChangeEventHandler, style = {} }) => {
+//     const { input, formStyle } = styles;
+
+//     console.log(style);
+
+//     return (
+//         <form style={formStyle}>
+//             <input
+//                 style={{ ...input, ...style }}
+//                 type='text'
+//                 placeholder={placeholder}
+//                 value=''
+//                 onChange={(onChangeEventHandler)}
+//             />
+//         </form>
+//     )
+// };
 
 const styles = {
     formStyle: {

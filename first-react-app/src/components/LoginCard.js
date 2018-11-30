@@ -1,44 +1,79 @@
-import React from 'react';
+import React, { Component } from 'react';
 import InputBox from './common/InputBox';
 import Button from './common/Button';
 
-const LoginCard = () => {
-    const { root, titleStyle, signUpPlaceholder, signUpText, forgotPassword } = styles;
+class LoginCard extends Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <div style={root}>
-            <p style={titleStyle}>Log In To App</p>
+        this.state = {
+            email: '',
+            password: '',
+            error: ''
+        }
+    }
 
-            <p style={signUpPlaceholder}>Don't have an account?
-            <span style={signUpText}>Sign Up Free!</span>
-            </p>
+    checkPassword(password) {
+        if (password.length >= 8) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-            <div style={{ width: '80%' }}>
-                <InputBox
-                    style={{ margin: 8 }}
-                    placeholder='Email'
-                    onChangeEventHandler={(event) => console.log(event.target.value)} />
+    render() {
+        const { root, titleStyle, signUpPlaceholder, signUpText, forgotPassword, errorStyle } = styles;
+        const { error, password } = this.state;
 
-                <InputBox
-                    style={{ margin: 8 }}
-                    placeholder='Password'
-                    onChangeEventHandler={(event) => console.log(event.target.value)} />
+        return (
+            <div style={root}>
+                <p style={titleStyle}>Log In To App</p>
+
+                <p style={signUpPlaceholder}>Don't have an account?
+            <span style={signUpText} onClick={() => {
+                        console.log('Signup clicked.');
+                    }}>Sign Up Free!</span>
+                </p>
+
+                <div style={{ width: '80%' }}>
+                    <InputBox
+                        style={{ margin: 8, height: 30 }}
+                        placeholder='Email'
+                        onChangeEventHandler={(event) => console.log(event.target.value)} />
+
+                    <InputBox
+                        style={{ margin: 8, height: 30 }}
+                        placeholder='Password'
+                        onChangeEventHandler={(event) => this.setState({ password: event.target.value })} />
+
+                    <Button
+                        title='Log In'
+                        buttonClickHandler={() => {
+                            this.setState({ error: '' });
+
+                            const passwordCheck = this.checkPassword(password);
+                            if (!passwordCheck) {
+                                this.setState({ error: 'The password is invalid' });
+                            }
+                        }}
+                        style={{
+                            background: '#0574e3',
+                            color: '#fff',
+                            width: '100%',
+                            margin: '8px'
+                        }}
+                    />
+                </div>
+
+                <p style={forgotPassword}>Forgot password?</p>
+
+                {
+                    error ? <p style={errorStyle}>{error}</p> : null
+                }
+
             </div>
-
-            <Button
-                title='Log In'
-                buttonClickHandler={() => {
-                    console.log('Login button is clicked');
-                }}
-                style={{
-                    background: '#0574e3',
-                    color: '#fff'
-                }}
-            />
-
-            <p style={forgotPassword}>Forgot password?</p>
-        </div>
-    );
+        );
+    }
 };
 
 const styles = {
@@ -46,8 +81,8 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-        width: '30%',
-        height: '30%',
+        width: '40%',
+        height: '40%',
         backgroundColor: '#fff',
         borderRadius: 5,
         padding: 10,
@@ -76,6 +111,11 @@ const styles = {
 
     forgotPassword: {
         color: '#0574e3',
+        fontSize: 15
+    },
+
+    errorStyle: {
+        color: '#FF0000',
         fontSize: 15
     }
 }
