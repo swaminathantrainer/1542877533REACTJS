@@ -1,21 +1,6 @@
 import React, { Component } from 'react';
 import TodoList from '../components/TodoList';
 
-const todos = [
-    {
-        id: 1,
-        title: 'Todo 1',
-        description: 'ABC',
-        time: '00:00'
-    },
-    {
-        id: 2,
-        title: 'Todo 2',
-        description: 'XYZ',
-        time: '10:00'
-    }
-];
-
 class TodoListingPage extends Component {
 
     render() {
@@ -26,7 +11,7 @@ class TodoListingPage extends Component {
                 <p style={titleStyle}>List of TODO's</p>
                 <div style={todoListStyle}>
                     <TodoList
-                        data={todos}
+                        data={[]}
                     />
                 </div>
             </div>

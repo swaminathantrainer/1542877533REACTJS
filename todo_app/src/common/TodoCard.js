@@ -52,6 +52,7 @@ const styles = {
     timeStyle: {
         fontSize: 18,
         flex: 1,
+        textAlign: 'right',
         margin: 8
     }
 }
