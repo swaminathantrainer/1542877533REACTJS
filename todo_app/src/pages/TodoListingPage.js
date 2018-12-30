@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import TodoList from '../components/TodoList';
+import { connect } from 'react-redux';
+import { getAllTodos } from '../actions';
 
 class TodoListingPage extends Component {
 
     render() {
         const { rootStyle, titleStyle, todoListStyle } = styles;
+        const { allTodos } = this.props;
 
         return (
             <div style={rootStyle}>
                 <p style={titleStyle}>List of TODO's</p>
                 <div style={todoListStyle}>
                     <TodoList
-                        data={[]}
+                        data={allTodos}
                     />
                 </div>
             </div>
@@ -39,4 +42,11 @@ const styles = {
     }
 };
 
-export default TodoListingPage;
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        allTodos: state.todos
+    }
+}
+
+export default connect(mapStateToProps, { getAllTodos })(TodoListingPage);

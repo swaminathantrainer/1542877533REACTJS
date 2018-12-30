@@ -1,9 +1,15 @@
-import { ADD_TODO, COMPLETE_TODO } from '../actions/ActionTypes';
+import { ADD_TODO, COMPLETE_TODO, GET_ALL } from '../actions/ActionTypes';
 
-export const rootReducer = (state, action) => {
+const initialState = {
+    todos: []
+}
+
+export const rootReducer = (state = initialState, action) => {
+    let todosCopy;
+
     switch (action.type) {
         case ADD_TODO:
-            const todosCopy = state.todos.slice();
+            todosCopy = state.todos.slice();
             const todo = {
                 id: Math.floor(Math.random() * 1000),
                 name: action.name,
@@ -18,6 +24,19 @@ export const rootReducer = (state, action) => {
                 todos: todosCopy
             };
         case COMPLETE_TODO:
-            return {};
+            // get the todo object that matches the give id
+            todosCopy = state.todos.slice();
+            const matchedTodo = state.todosCopy.filter((todo) => todo.id === action.id);
+            matchedTodo.isCompleted = true;
+
+            return {
+                todos: todosCopy
+            };
+
+        case GET_ALL:
+            return state.todos;
+
+        default:
+            return state;
     }
 }

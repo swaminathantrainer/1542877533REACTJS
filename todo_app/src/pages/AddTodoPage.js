@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import TodoInputBox from '../common/TodoInputBox';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions';
 
 class AddTodoPage extends Component {
 
     addTodoHandler(todoTxt) {
-        const { addTodos } = this.props;
-        addTodos(todoTxt);
+        const { addTodo } = this.props;
+        addTodo(todoTxt);
     }
 
     render() {
@@ -23,4 +25,4 @@ class AddTodoPage extends Component {
     }
 }
 
-export default AddTodoPage;
+export default connect(null, { addTodo })(AddTodoPage);

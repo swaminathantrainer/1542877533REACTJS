@@ -1,4 +1,4 @@
-import { ADD_TODO, COMPLETE_TODO } from './ActionTypes';
+import { ADD_TODO, COMPLETE_TODO, GET_ALL } from './ActionTypes';
 
 // action creator
 export const addTodo = ({ name, description, time }) => {
@@ -9,6 +9,12 @@ export const addTodo = ({ name, description, time }) => {
         description,
         time
     };
+}
+
+export const getAllTodos = () => {
+    return {
+        type: GET_ALL
+    }
 }
 
 export const completeTodo = (id) => {
