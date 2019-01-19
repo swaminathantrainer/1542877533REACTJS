@@ -12,10 +12,10 @@ const TodoCard = ({ title, description, time }) => {
     return (
         <div style={rootStyle}>
             <div style={titleContainer}>
-                <p style={titleStyle}>title</p>
-                <p style={timeStyle}>time</p>
+                <p style={titleStyle}>{title}</p>
+                <p style={timeStyle}>{time}</p>
             </div>
-            <p style={descriptionStyle}>description</p>
+            <p style={descriptionStyle}>{description}</p>
         </div>
     )
 };

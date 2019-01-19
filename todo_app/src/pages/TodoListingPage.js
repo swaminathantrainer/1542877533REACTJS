@@ -4,6 +4,14 @@ import { connect } from 'react-redux';
 import { getAllTodos } from '../actions';
 
 class TodoListingPage extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        const { getAllTodos } = this.props;
+        getAllTodos();
+    }
 
     render() {
         const { rootStyle, titleStyle, todoListStyle } = styles;

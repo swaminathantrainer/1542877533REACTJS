@@ -18,7 +18,7 @@ const TodoList = ({ data }) => {
                 data.map((d) => {
                     return (
                         <TodoCard
-                            title={d.title}
+                            title={d.name}
                             description={d.description}
                             time={d.time}
                         />

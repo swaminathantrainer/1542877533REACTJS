@@ -34,7 +34,7 @@ export const rootReducer = (state = initialState, action) => {
             };
 
         case GET_ALL:
-            return state.todos;
+            return { todos: state.todos };
 
         default:
             return state;

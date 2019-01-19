@@ -7,7 +7,7 @@ class AddTodoPage extends Component {
 
     addTodoHandler(todoTxt) {
         const { addTodo } = this.props;
-        addTodo(todoTxt);
+        addTodo({ name: todoTxt, description: "", time: Date.now() });
     }
 
     render() {

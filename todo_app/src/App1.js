@@ -38,11 +38,7 @@ class App extends Component {
                             <Route path='/' exact component={TodoListingPage} />
                             <Route path='/add_todo' render={() => {
                                 return (
-                                    <AddTodoPage
-                                        addTodos={(todoTxt) => {
-                                            console.log(todoTxt);
-                                        }}
-                                    />
+                                    <AddTodoPage />
                                 )
                             }} />
                         </div>
