@@ -1,7 +1,16 @@
 import { ADD_TODO, COMPLETE_TODO, GET_ALL } from './ActionTypes';
 
-// action creator
-export const addTodo = ({ name, description, time }) => {
+/*
+Sample TODO Object
+{
+    id: int,
+    title: string,
+    description: string,
+    time: string
+}
+*/
+
+const addTodoAction = ({ name, description, time }) => {
     // real action that is an object
     return {
         type: ADD_TODO,
@@ -9,6 +18,19 @@ export const addTodo = ({ name, description, time }) => {
         description,
         time
     };
+}
+
+// action creator
+export const addTodo = ({ name, description, time }) => {
+    const body = {
+        completed: false,
+        content: name,
+        due: {
+            date: time
+        }
+    }
+
+    // TODO: needs some work
 }
 
 export const getAllTodos = () => {
