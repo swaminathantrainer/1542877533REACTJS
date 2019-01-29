@@ -1,7 +1,8 @@
-import { ADD_TODO, COMPLETE_TODO, GET_ALL } from '../actions/ActionTypes';
+import { ADD_TODO, COMPLETE_TODO, GET_ALL, SHOW_LOADING, HIDE_LOADING } from '../actions/ActionTypes';
 
 const initialState = {
-    todos: []
+    todos: [],
+    isLoading: false
 }
 
 export const rootReducer = (state = initialState, action) => {
@@ -35,6 +36,12 @@ export const rootReducer = (state = initialState, action) => {
 
         case GET_ALL:
             return { todos: state.todos };
+
+        case HIDE_LOADING:
+            return { ...state, isLoading: false }
+
+        case SHOW_LOADING:
+            return { ...state, isLoading: true }
 
         default:
             return state;

@@ -3,14 +3,15 @@ import TodoListingPage from './pages/TodoListingPage';
 import AddTodoPage from './pages/AddTodoPage';
 import { BrowserRouter, Route } from 'react-router-dom';
 import NavBar from './common/NavBar';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { rootReducer } from './reducers';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 // const defaultState = {
 //     todos: []
 // }
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 class App extends Component {
 
